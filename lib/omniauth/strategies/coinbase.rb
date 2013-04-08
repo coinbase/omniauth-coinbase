@@ -25,7 +25,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.load(access_token.get('/api/v1/users').body['users'][0])
+        @raw_info ||= MultiJson.load(access_token.get('/api/v1/users').body)['users'][0]['user']
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
