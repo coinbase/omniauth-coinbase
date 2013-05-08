@@ -9,7 +9,7 @@ module OmniAuth
               :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil
       }
 
-      uid { raw_info[:id] }
+      uid { raw_info['id'] }
 
       info do
         {
