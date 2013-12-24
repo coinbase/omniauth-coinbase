@@ -26,6 +26,18 @@ end
 
 You can now access the OmniAuth Coinbase OAuth2 URL: /auth/coinbase
 
+# Configuration
+
+You can configure permissions/scope, which you pass in to the `provider` method after your `COINBASE_KEY` and `COINBASE_SECRET`:
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :coinbase, ENV["COINBASE_KEY"], ENV["COINBASE_SECRET"], scope: 'send addresses'
+end
+```
+
+The format is a space separated list of strings from Coinbase's [list of OAuth Permissions](https://coinbase.com/docs/api/authentication#permissions). If you don't include any `scope` it will default to `all`.
+
 # License
 
 Copyright (c) 2012 by Miguel Palhas
