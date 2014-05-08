@@ -32,8 +32,10 @@ You can configure permissions/scope, which you pass in to the `provider` method 
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :coinbase, ENV["COINBASE_KEY"], ENV["COINBASE_SECRET"], scope: 'send addresses'
+  provider :coinbase, ENV["COINBASE_KEY"], ENV["COINBASE_SECRET"], scope: 'user send addresses'
 end
 ```
 
 The format is a space separated list of strings from Coinbase's [list of OAuth Permissions](https://coinbase.com/docs/api/authentication#permissions). If you don't include any `scope` it will default to `all`.
+
+NOTE: While developing your application, if you change the scope in the initializer you will need to restart your app server. Remember that at minimum you MUST include either the 'all' or 'user' scopes.
