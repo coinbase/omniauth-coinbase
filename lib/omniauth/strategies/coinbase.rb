@@ -15,8 +15,7 @@ module OmniAuth
         {
           :id => raw_info['id'],
           :name => raw_info['name'],
-          :email => raw_info['email'],
-          :balance => raw_info['balance']['amount']
+          :email => raw_info['email']
         }
       end
 
