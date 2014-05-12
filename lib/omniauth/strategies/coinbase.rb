@@ -6,7 +6,11 @@ module OmniAuth
       option :name, 'coinbase'
       option :client_options, {
               :site => 'https://coinbase.com',
-              :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil
+              :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil,
+              :ssl => {
+                :verify => true,
+                :cert_store => ::Coinbase::Client.whitelisted_cert_store
+              }
       }
 
       uid { raw_info['id'] }
