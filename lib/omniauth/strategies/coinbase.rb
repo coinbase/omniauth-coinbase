@@ -1,4 +1,5 @@
 require 'omniauth-oauth2'
+require 'coinbase'
 
 module OmniAuth
   module Strategies
