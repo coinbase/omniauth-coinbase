@@ -13,6 +13,8 @@ module OmniAuth
                 :cert_store => ::Coinbase::Client.whitelisted_cert_store
               }
       }
+      option :authorize_options, [:scope, :meta]
+
 
       uid { raw_info['id'] }
 
