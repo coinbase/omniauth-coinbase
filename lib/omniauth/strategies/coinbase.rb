@@ -31,7 +31,11 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.load(access_token.get('/api/v1/users').body)['users'][0]['user']
+        # Hack to get sandbox to work
+        sandbox = access_token.client.site === "https://sandbox.coinbase.com"
+        access_token.client.site = "https://api.sandbox.coinbase.com" if sandbox
+        user_info_path = "#{sandbox ? nil : '/api'}/v1/users/self"
+        @raw_info ||= MultiJson.load(access_token.get(user_info_path).body)['user']
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
