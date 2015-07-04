@@ -1,5 +1,4 @@
 require 'omniauth-oauth2'
-require 'coinbase'
 
 module OmniAuth
   module Strategies
@@ -7,22 +6,19 @@ module OmniAuth
       option :name, 'coinbase'
       option :client_options, {
               :site => 'https://coinbase.com',
-              :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil,
-              :ssl => {
-                :verify => true,
-                :cert_store => ::Coinbase::Client.whitelisted_cert_store
-              }
+              :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil
       }
+
       option :authorize_options, [:scope, :meta]
 
-
-      uid { raw_info['id'] }
+      uid { raw_info[:id] }
 
       info do
         {
           :id => raw_info['id'],
           :name => raw_info['name'],
-          :email => raw_info['email']
+          :email => raw_info['email'],
+          :balance => raw_info['balance']['amount']
         }
       end
 
@@ -31,7 +27,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.load(access_token.get('/api/v1/users').body)['users'][0]['user']
+        @raw_info ||= MultiJson.load(access_token.get('/api/v1/users/self').body)['user']
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
