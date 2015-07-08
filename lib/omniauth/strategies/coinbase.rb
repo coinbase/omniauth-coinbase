@@ -1,5 +1,4 @@
 require 'omniauth-oauth2'
-require 'coinbase'
 
 module OmniAuth
   module Strategies
@@ -8,10 +7,6 @@ module OmniAuth
       option :client_options, {
               :site => 'https://coinbase.com',
               :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil,
-              :ssl => {
-                :verify => true,
-                :cert_store => ::Coinbase::Client.whitelisted_cert_store
-              }
       }
       option :authorize_options, [:scope, :meta]
 
