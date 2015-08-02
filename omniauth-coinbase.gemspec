@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/naps62/omniauth-coinbase"
   s.summary     = %q{OmniAuth strategy for Coinbase}
   s.description = %q{OmniAuth strategy for Coinbase}
+  s.licenses    = ['MIT']
 
   s.rubyforge_project = "omniauth-coinbase"
 
