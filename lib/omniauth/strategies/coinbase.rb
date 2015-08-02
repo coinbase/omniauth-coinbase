@@ -6,7 +6,7 @@ module OmniAuth
     class Coinbase < OmniAuth::Strategies::OAuth2
       option :name, 'coinbase'
       option :client_options, {
-              :site => 'https://coinbase.com',
+              :site => 'https://www.coinbase.com',
               :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil,
               :ssl => {
                 :verify => true,
