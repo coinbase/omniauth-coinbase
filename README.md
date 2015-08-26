@@ -43,3 +43,16 @@ end
 The format is a space separated list of strings from Coinbase's [list of OAuth Permissions](https://developers.coinbase.com/api/v2#scopes).
 
 NOTE: While developing your application, if you change the scope in the initializer you will need to restart your app server.
+
+# User info
+
+The authenticated user's id and name are present in the omniauth auth object under auth.uid and auth.info.name.
+
+The authenticated user's [raw information](https://developers.coinbase.com/api/v2#user-resource) is present under auth.extra.raw_info
+
+```ruby
+auth.uid # "7eee8527-3439-52d9-98d6-a04c0d0dc6ce"
+auth.info.name # "Alex Ianus"
+auth.extra.raw_info.email # "aianus@example.com", only present with wallet:user:email scope
+auth.extra.raw_info.time_zone # "Pacific Time (US & Canada)", only present with wallet:user:show scope
+```
