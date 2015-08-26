@@ -11,7 +11,7 @@ describe OmniAuth::Strategies::Coinbase do
     end
 
     it 'should have correct site' do
-      expect(subject.options.client_options.site).to eq('https://coinbase.com')
+      expect(subject.options.client_options.site).to eq('https://www.coinbase.com')
     end
   end
 end
