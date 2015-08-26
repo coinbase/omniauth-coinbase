@@ -12,6 +12,11 @@ Gem::Specification.new do |s|
   s.description = %q{OmniAuth strategy for Coinbase}
   s.licenses    = ['MIT']
 
+  s.post_install_message = <<MSG
+Do not upgrade an existing app to this version of omniauth-coinbase.
+See the release notes in the README for more information.
+MSG
+
   s.rubyforge_project = "omniauth-coinbase"
 
   s.files         = `git ls-files`.split("\n")
