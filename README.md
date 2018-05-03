@@ -56,20 +56,3 @@ auth.info.name # "Alex Ianus"
 auth.extra.raw_info.email # "aianus@example.com", only present with wallet:user:email scope
 auth.extra.raw_info.time_zone # "Pacific Time (US & Canada)", only present with wallet:user:show scope
 ```
-
-# Sandbox support
-
-Use omniauth-coinbase in development with our [developer sandbox](https://developers.coinbase.com/blog/2015/02/20/sandbox)
-
-Note that you will need to create a separate sandbox OAuth application with its own client_id and secret.
-
-```ruby
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :coinbase, ENV["COINBASE_CLIENT_ID"], ENV["COINBASE_CLIENT_SECRET"], scope: 'wallet:user:read', sandbox: true
-end
-```
-
-```ruby
-require 'coinbase/wallet'
-client = Coinbase::Wallet::Client.new(api_key: <sandbox api key>, api_secret: <sandbox api secret>, api_url: "https://api.sandbox.coinbase.com")
-```
